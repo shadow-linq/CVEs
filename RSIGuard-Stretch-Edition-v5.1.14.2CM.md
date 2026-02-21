@@ -30,7 +30,9 @@ sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "delete from access 
 sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "INSERT INTO access VALUES('kTCCServiceSystemPolicyDocumentsFolder','com.apple.Terminal',0,2,2,1,readfile('/tmp/csreq.bin'),NULL,0,'UNUSED',NULL,NULL,CAST(strftime('%s','now') AS INTEGER));";
 ```
 7. OS Command Injection vulnerability exists in `Program Arguments` due to lack of input validation for backtick characters. Paste in the following bash command in the `Program Arguments` field: \`/tmp/runme.sh\`.
-8. Since the application requests Full Disk Access (end user or MDA software has to grant it), we use the Command Injection to add a TCC entry, which allows us to grant any application on the system TCC permissions such as document folder or desktop read access. Click okay for the two prompts, then press keybinding key you selected earlier to trigger attack.
+8. Click okay for the two prompts, then press keybinding key you selected earlier to trigger attack.
+
+Since the application requests Full Disk Access (end user or MDA software has to grant it), we use the Command Injection to add a TCC entry, which allows us to grant any application on the system TCC permissions such as document folder or desktop read access.
 
 ## Additional Information
 This attack is not limited to the GUI application. The currently logged in user can modify the `~/Library/Preferences/RSIGuard Preferences` file in order to conduct this attack via command line. This requires no special TCC permissions and just an execution context as the current user. Based on testing, it does require that the RSIGuard application to not be running, otherwise the runtime application will override any changes to the configuration file.
