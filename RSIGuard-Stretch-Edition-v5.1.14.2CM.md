@@ -2,7 +2,7 @@
 
 An OS Command Injection vulnerability exists in RSIGuard for macOS (tested on macOS Monterey 12.6.7) within the KeyControl hotkey configuration functionality.
 
-The vulnerability occurs when configuring a custom hotkey using the "Launch an Application" category. User supplied input entered into the Program Arguments field is not properly sanitized or validated, allowing arbitrary command execution.
+The vulnerability occurs when configuring a custom hotkey using the "Launch an Application" feature. User supplied input entered into the Program Arguments field is not properly sanitized or validated, allowing arbitrary command execution.
 
 By supplying a malicious payload (e.g., a path to an executable shell script such as /tmp/runme.sh) in the Program Arguments field, an attacker can achieve arbitrary command execution when the configured hotkey is triggered.
 
